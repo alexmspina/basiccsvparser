@@ -80,7 +80,11 @@ func ParseCsv(f string) []map[string]string {
 
 		// for each header key create a new value in the row map
 		for i, k := range header {
-			row[k] = record[i]
+			if record[i] == "" {
+				continue
+			} else {
+				row[k] = record[i]
+			}
 		}
 
 		result = append(result, row)
