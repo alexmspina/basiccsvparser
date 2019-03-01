@@ -39,28 +39,20 @@ func GetHeader(cr *csv.Reader) []string {
 }
 
 // OpenCSV opens a csv file
-func OpenCSV(f string) *csv.Reader {
+func OpenCSV(f string, r *csv.Reader) {
 	file, err := os.Open(f)
 	if err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
 
-	r := csv.NewReader(file)
-
-	return r
+	r = csv.NewReader(file)
 }
 
 // ParseCsv parse csv file given file name string and deposit in list of maps for each row
-func ParseCsv(f string) []map[string]string {
+func ParseCsv(header []string, r *csv.Reader) []map[string]string {
 	// initialize resulting list of maps representing each row
 	result := make([]map[string]string, 0)
-
-	// open the target csv file given the file name
-	r := OpenCSV(f)
-
-	// get the key values from the csv header
-	header := GetHeader(r)
 
 	// loop through csv reader line by line
 	for {
