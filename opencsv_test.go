@@ -10,6 +10,7 @@ var tester csv.Reader
 var filename = "test.csv"
 
 func TestOpenCSV(t *testing.T) {
-	OpenCSV(filename, &tester)
+	testReader := OpenCSV(filename)
+	fmt.Println(testReader)
 	fmt.Println("OpenCSV test successful")
 }

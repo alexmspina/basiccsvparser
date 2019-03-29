@@ -39,14 +39,16 @@ func GetHeader(cr *csv.Reader) []string {
 }
 
 // OpenCSV opens a csv file
-func OpenCSV(f string, r *csv.Reader) {
+func OpenCSV(f string) *csv.Reader {
 	file, err := os.Open(f)
 	if err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
 
-	r = csv.NewReader(file)
+	r := csv.NewReader(file)
+
+	return r
 }
 
 // ParseCsv parse csv file given file name string and deposit in list of maps for each row
